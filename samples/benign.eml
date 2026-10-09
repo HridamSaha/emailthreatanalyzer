@@ -1,0 +1,17 @@
+From: Operations Desk <ops@contoso.example>
+To: Analyst <analyst@contoso.example>
+Reply-To: Operations Desk <ops@contoso.example>
+Return-Path: <ops@contoso.example>
+Subject: Weekly status notes
+Date: Thu, 09 Oct 2026 10:00:00 +0000
+Message-ID: <benign-001@contoso.example>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+
+Hello team,
+
+Please find this week's ordinary status notes. No action is required other than
+reading the attached agenda at the next staff meeting.
+
+Thanks,
+Operations

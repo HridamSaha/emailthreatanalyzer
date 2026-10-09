@@ -1,0 +1,12 @@
+fastapi==0.115.12
+uvicorn[standard]==0.34.2
+pydantic==2.11.3
+pydantic-settings==2.9.1
+SQLAlchemy==2.0.40
+python-multipart==0.0.20
+python-dotenv==1.1.0
+reportlab==4.4.0
+pypdf==5.4.0
+httpx==0.28.1
+pytest==8.3.5
+email-validator==2.2.0

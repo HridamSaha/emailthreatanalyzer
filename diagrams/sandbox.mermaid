@@ -1,0 +1,25 @@
+graph LR
+    subgraph Host["Analyst Trusted Workstation"]
+        A[Security Analyst] --> B[ETAS Dashboard & API]
+        B --> C[Static Threat Assessment]
+        C --> D{Suspicious / High-Risk Case?}
+    end
+
+    subgraph Transfer["Controlled Air-Gap Boundary"]
+        D -- Authorized Manual Handoff --> E[Controlled Transfer Gateway]
+        E -- One-Way Staging --> F[Isolated Virtual Disk]
+    end
+
+    subgraph Sandbox["Isolated Dynamic Analysis Environment (Disposable VM)"]
+        F --> G[Guest OS: Windows / Linux Sandbox]
+        G --> H[Process & Registry Monitoring: Procmon / Sysmon]
+        G --> I[Network Simulation: FakeNet-NG / INetSim]
+        G --> J[Memory & Behavioral Inspection]
+    end
+
+    subgraph Recovery["Containment & Restoration Controls"]
+        G -. Revert to Pristine Snapshot .-> K[Snapshot / Clean State Restoration]
+        J -- Sanitized Behavioral Artifacts --> L[IoC & Evidence Persistence]
+    end
+
+    L --> B

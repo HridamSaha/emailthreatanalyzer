@@ -1,0 +1,18 @@
+From: Files <files@contoso.example>
+To: User <user@contoso.example>
+Subject: Invoice copy
+Date: Thu, 09 Oct 2026 10:20:00 +0000
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="BOUNDARY"
+
+--BOUNDARY
+Content-Type: text/plain; charset="utf-8"
+
+Please see the attached invoice copy.
+
+--BOUNDARY
+Content-Type: application/octet-stream
+Content-Disposition: attachment; filename="invoice.pdf.exe"
+
+MZThis-is-an-inert-PE-signature-fixture-not-real-malware
+--BOUNDARY--

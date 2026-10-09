@@ -1,0 +1,39 @@
+graph TD
+    A[Suspicious Email / Artifact Input] --> B{Input Validation}
+    B -- Invalid / Exceeds 10MB --> B1[Graceful 400/413 Error]
+    B -- Valid .eml / Raw / URL / File --> C[Safe Static Extraction Engine]
+    
+    subgraph Extraction["Artifact & Content Extraction (No Execution)"]
+        C --> D1[Header Extractor: From, Reply-To, Return-Path, SPF/DKIM/DMARC]
+        C --> D2[Body Sanitizer: Strip HTML to Safe Text, Extract Links]
+        C --> D3[URL Parser: IP Host, Userinfo, Lexical Obfuscation]
+        C --> D4[Attachment Inspector: SHA-256 Digest, Magic Bytes vs MIME]
+    end
+
+    subgraph Detection["Modular Detection Engine"]
+        D1 --> E1[EMAIL-001 / EMAIL-002: Identity & Domain Mismatch]
+        D2 --> E2[EMAIL-003 / EMAIL-004: Credential & Financial Urgency]
+        D3 --> E3[URL-001 / URL-002 / URL-003: Structure, IP Host, Link Text]
+        D4 --> E4[ATTACH-001 / ATTACH-002 / ATTACH-003: Risky Ext, Signature, Known Hash]
+    end
+
+    E1 & E2 & E3 & E4 --> F[CORR-001: Indicator Correlation Engine]
+    F --> G[Explainable Risk Scorer (0 - 100)]
+    
+    subgraph Decision["Safeguards & Classification"]
+        G --> H1{Score >= 60 & Multi-Ind / Strong Intel?}
+        H1 -- Yes --> I1[Classification: MALICIOUS (High Risk)]
+        H1 -- No, Single Weak Anomaly --> I2[Classification: SUSPICIOUS (Damped Safeguard)]
+        G --> H2{Score 30-59 or Active Threat Finding?}
+        H2 -- Yes --> I2
+        G --> H3{Malformed / Missing Fields?}
+        H3 -- Unreliable Extraction --> I3[Classification: MANUAL REVIEW]
+        G --> H4{Score 0-29 & No Threat Findings?}
+        H4 -- Yes --> I4[Classification: SAFE (Low Risk)]
+    end
+
+    I1 & I2 & I3 & I4 --> J[Structured IoC Extractor]
+    J --> K[(SQLite / PostgreSQL Persistence)]
+    K --> L[SOC Analyst Dashboard & Report Generator]
+    L --> M1[Interactive UI: Visual Gauge, Findings, IoC Copy]
+    L --> M2[Downloadable PDF Dossier & JSON/CSV Export]

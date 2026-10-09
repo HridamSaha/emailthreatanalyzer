@@ -1,0 +1,15 @@
+From: Microsoft Account <secure-login@micros0ft-verify.xyz>
+To: User <user@contoso.example>
+Reply-To: Account Recovery <recover@unrelated-mailer.xyz>
+Subject: Urgent: confirm your password now
+Date: Thu, 09 Oct 2026 10:15:00 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset="utf-8"
+
+<html>
+<body>
+<p>Your account will be suspended immediately unless you confirm your password
+and complete a wire transfer using gift cards.</p>
+<p>Sign in here: <a href="http://185.199.108.153/login-secure">https://login.microsoft.com</a></p>
+</body>
+</html>
